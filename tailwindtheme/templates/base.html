@@ -1,0 +1,36 @@
+
+{% load static %}
+{% load static tailwind_tags %}
+
+<html lang="en" data-theme="cmyk" class="h-full">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Blog{% endblock %}</title>
+    {% tailwind_css %}
+  </head>
+
+  <body class="flex h-full">
+    <div class="relative flex w-full flex-col ">
+      <!-- Header -->
+      {% include 'partials/_header.html'%}
+
+      <!-- Main Content Block -->
+      <main class="flex-auto container">
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <!-- Footer -->
+      {% include 'partials/_footer.html' %}
+
+
+    </div>
+  </body>
+
+</html>
+
+
+

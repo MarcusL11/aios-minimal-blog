@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Post List{% endblock %}
+
+{% block content %}
+<div class="sm:px-8 mt-6 sm:mt-8">
+  <div class="mx-auto w-full max-w-7xl lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-5xl">
+      <header class="max-w-2xl mb-10">
+        <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">Posts Archive</h1>
+      </header>
+      {% if posts %}
+      <ul class="list-none">
+        {% for post in posts %}
+        <a href="{% url 'post_detail' post_id=post.id %}">
+          <div class="flex">
+            <li class="mb-2 mr-4 hidden sm:block">
+              <td>{{ post.pub_date|date:"Y · M · d" }}</td>
+            </li>
+            <li class="mb-2 mr-4 block sm:hidden">
+              <td>{{ post.pub_date|date:"y/m/d" }}</td>
+            </li>
+            <li>
+              <td>{{ post.title }}</td>
+            </li>
+          </div>
+        </a>
+        {% endfor %}
+      </ul> 
+      {% else %}
+      <p> No posts yet. </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
