@@ -135,10 +135,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
-    os.path.join(
-        BASE_DIR, "static"
-    ),  # If you have a 'static' folder at the project level
-    os.path.join(BASE_DIR, "static-extensions"),
+    # os.path.join(
+    #     BASE_DIR, "static"
+    # ),  # If you have a 'static' folder at the project level
+    # os.path.join(BASE_DIR, "static-extensions"),
     os.path.join(BASE_DIR, "tailwindtheme/static"),
 ]
 

@@ -11,7 +11,7 @@
           <li><a href="{% url 'post_list' %}">Posts</a></li>
         </ul>
       </div>
-      <a href="{% url 'blog_index' %}"class="btn btn-ghost text-xl">AIOS</a>
+      <a href="{% url 'blog_index' %}" class="btn btn-ghost text-xl">{% templatetag openvariable %} Marcus Lertkomolsuk {% templatetag closevariable %}</a>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
@@ -19,9 +19,9 @@
         <li><a href="{% url 'post_list' %}">Posts</a></li>
       </ul>
     </div>
-    <div class="navbar-end">
-      <a class="btn btn-secondary">Subscribe</a>
-    </div>
+    <!-- <div class="navbar-end"> -->
+    <!--   <a class="btn btn-secondary">Subscribe</a> -->
+    <!-- </div> -->
   </div>
   <!-- Navbar end -->
 </header>

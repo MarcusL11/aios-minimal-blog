@@ -60,19 +60,19 @@ module.exports = {
     themes: [
       {
         aios: {
-          'primary': '#5dc1c8',
-          'primary-focus': '#499fa3',
+          'primary': '#b3e5fc',
+          'primary-focus': '#00796b',
           'primary-content': '#212121',
 
-          'secondary': '#5dc1c8',
-          'secondary-focus': '#499fa3',
+          'secondary': '#b2dfdb',
+          'secondary-focus': '#8bc34a',
           'secondary-content': '#212121',
 
-          'accent': '#c5d0c6',
+          'accent': '#a1887f',
           'accent-focus': '#a3aea4',
           'accent-content': '#212121',
 
-          'neutral': '#c0c5c4',
+          'neutral': '#d5d5d5',
           'neutral-focus': '#9fa4a3',
           'neutral-content': '#212121',
 
