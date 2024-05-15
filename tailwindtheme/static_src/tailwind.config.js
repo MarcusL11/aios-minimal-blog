@@ -60,6 +60,14 @@ module.exports = {
     themes: [
       {
         aios: {
+          ...require('daisyui/src/theming/themes')['aios'],
+          '.menu li > *:not(ul):not(.menu-title):not(details):hover': {
+            backgroundColor: '#a1887f',
+            color: '#d5d5d5',
+            borderRadius: '1rem',
+
+          },
+
           'primary': '#b3e5fc',
           'primary-focus': '#00796b',
           'primary-content': '#212121',

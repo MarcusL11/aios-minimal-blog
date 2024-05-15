@@ -3,31 +3,33 @@
 {% block title %}MarcusL-{{ post.title }}{% endblock %}
 
 {% block content %}
-    <!-- Breadcrumb and Main Content -->
-    <nav style="--bs-breadcrumb-divider: '>';">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
-                <a href="{% url 'post_list' %}?q={{ post.tag.name }}">{{ post.tag.name }}</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
-        </ol>
-    </nav>
+<div class="px-4 sm:px-8 mt-4 sm:mt-8">
+  <div class="mx-auto w-full max-w-7xl lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-5xl">
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <h1 class="card-title">{{ post.title }} </h1>
-            <p class="card-text">
-                <small class="text-muted">
-                    Tag: <span class="badge bg-primary">{{ post.tag.name }}</span>
-                </small>
-                <br>
-                <small class="text-muted">
-                    Published by {{ post.author.username }} on {{ post.pub_date }}
-                </small>
-            </p>
+      <!-- Breadcrumb  -->
+      <div class="text-sm breadcrumbs">
+        <ul>
+          <li><a href="{% url 'post_list' %}">Post Archive</a></li> 
+          <li>{{ post.title }}</li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <header class="mt-6">
+        <h2 class="font-bold tracking-tight text-base-content text-2xl sm:text-3xl">{{ post.title }} </h2>
+          <p class="text-xs">Tag: <span class="text-xs badge bg-accent text-base-100">{{ post.tag.name }}</span></p>
+          <p class="text-xs">
+            Published on {{ post.pub_date }}
+          </p>
         </div>
-        <div class="card-body">
-            <div>{{ post.content | markdownify }}</div>
-        </div>
+      </header>
+
+      <section class="mt-6 mb-24">
+          <div>{{ post.content | markdownify }}</div>
+      </section>
+
     </div>
+  </div>
+</div>
 {% endblock %}

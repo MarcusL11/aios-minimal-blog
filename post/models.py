@@ -10,7 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     content = MDTextField(null=True, blank=True)
     content_preview = models.TextField(null=True, blank=True)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField("date published")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     is_index_post = models.BooleanField(default=False)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True, blank=False)
@@ -21,10 +21,10 @@ class Post(models.Model):
 
 class TextAsset(models.Model):
     ASSET_TYPES = (
-        ('logo', 'Logo'),
-        ('copyright', 'Copyright'),
-        ('about', 'About'),
-        ('contact', 'Contact')
+        ("logo", "Logo"),
+        ("copyright", "Copyright"),
+        ("about", "About"),
+        ("contact", "Contact"),
     )
     asset_type = models.CharField(max_length=50, choices=ASSET_TYPES)
     content = models.TextField()

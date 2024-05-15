@@ -4,25 +4,25 @@
 {% block title %}MarcusL- Home{% endblock %}
 
 {% block content %}
-<div class="sm:px-8 mt-16 sm:mt-28">
+<div class="px-4 sm:px-8 mt-10 sm:mt-20 mb-20">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
       <header class="max-w-2xl">
-        <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">Writing on Venture Building, Startups, AI Automation, and...Life.</h1>
-        <p class="mt-6 text-base text-base-content">My corner of the internet where I share my thoughts on Startup Growth, Industry Trends, Personalized AI Solutions, and things I find interesting.</p>
+        <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">Writing on <span class="text-accent">Venture Building, Startups, AI Automation</span></h1>
+        <p class="mt-6 text-base text-base-content">My corner of the internet where I share thoughts on Startup Growth, Industry Trends, Personalized AI Solutions, and things I find interesting.</p>
       </header>
       <section class="mt-10 sm:mt-16">
-        <h2>Latest Posts</h2>
+        <h2 class="font-bold tracking-tight text-base-content text-2xl sm:text-3xl">Latest Posts</h2>
         {% for post in latest_posts %}
         <article class="mt-6">
           <a href="{% url 'post_detail' post.id %}">
-            <div class="hover:bg-secondary rounded-lg p-2 duration-500">
-              <h3 class="text-2xl font-bold text-base-content hover:text-accent">{{ post.title }}</h3>
-              <p class="mt-2 text-base text-base-content">{{ post.pub_date }}</p>
-              <div class="mt-4 text-base text-base-content">
+            <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-500">
+              <h3 class="text-2xl font-bold">{{ post.title }}</h3>
+              <p class="mt-2">{{ post.pub_date }}</p>
+              <div class="mt-4">
                 {{ post.content | markdownify | striptags | truncatechars:200 }}
               </div>
-              <a class="mt-4 text-base hover:text-accent underline" href="{% url 'post_detail' post.id %}">Read more</a>
+              <a class="mt-4 hover:text-primary underline" href="{% url 'post_detail' post.id %}">Read more</a>
             </div>
           </a>
         </article>
