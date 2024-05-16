@@ -130,26 +130,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_DIRS = [
-    # os.path.join(
-    #     BASE_DIR, "static"
-    # ),  # If you have a 'static' folder at the project level
-    # os.path.join(BASE_DIR, "static-extensions"),
-    os.path.join(BASE_DIR, "tailwindtheme/static"),
-]
-
-# enabling media uploads
-MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "media")
-MEDIA_URL = "/media/"
-
-# Default primary key field type
+# Defaul
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -219,7 +202,6 @@ MDEDITOR_CONFIGS = {
     }
 }
 
-
 MARKDOWNIFY = {
     "default": {
         "MARKDOWN_EXTENSIONS": [
@@ -271,10 +253,23 @@ MARKDOWNIFY = {
 
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
-
 AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
 AWS_S3_FILE_OVERWRITE = False
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "tailwindtheme", "static"),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# enabling media uploads
+# MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 STORAGES = {
     # Media file (image) management
@@ -286,6 +281,7 @@ STORAGES = {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
 }
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
