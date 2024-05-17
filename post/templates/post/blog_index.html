@@ -8,8 +8,8 @@
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
       <header class="max-w-2xl">
-        <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">Writing on <span class="text-accent">Venture Building, Startups, AI Automation</span></h1>
-        <p class="mt-6 text-base text-base-content">My corner of the internet where I share thoughts on Startup Growth, Industry Trends, Personalized AI Solutions, and things I find interesting.</p>
+        <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">Writing on <span class="text-accent">Venture Building, Startups, AI & Robotics.</span></h1>
+        <p class="mt-6 text-base text-base-content">Welcome to my corner of the internet, where I share my journey, learnings, and interesting finds. I also provide templates, tools, and resources that I find useful for startup building and web development. I hope you find them useful too.</p>
       </header>
       <section class="mt-10 sm:mt-16">
         <h2 class="font-bold tracking-tight text-base-content text-2xl sm:text-3xl">Latest Posts</h2>
@@ -19,6 +19,7 @@
             <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-500">
               <h3 class="text-2xl font-bold">{{ post.title }}</h3>
               <p class="mt-2">{{ post.pub_date }}</p>
+              <p class="text-xs">Tag: {{ post.tag.name }}</p>
               <div class="mt-4">
                 {{ post.content | markdownify | striptags | truncatechars:200 }}
               </div>

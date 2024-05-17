@@ -26,9 +26,15 @@
       {% include 'partials/_header.html'%}
 
       <!-- Main Content Block -->
-      <main class="flex-auto container">
-        {% block content %}
-        {% endblock content %}
+      <main>
+        <div class="flex-auto container">
+          {% block content %}
+          {% endblock content %}
+        </div>
+        <aside class="container">
+          {% block sidebar %}
+          {% endblock sidebar %}
+        </aside>
       </main>
 
       <!-- Footer -->

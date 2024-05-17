@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-
+from itertools import zip_longest
 from .models import Post, Tag, TextAsset
 
 
@@ -68,3 +68,24 @@ def blog_index(request):
 
 def about(request):
     return render(request, "post/about.html")
+
+
+def build_in_public(request):
+    # Fetch the 'Build in Public' tag
+    build_in_public_tag = Tag.objects.get(name="Build in Public")
+
+    # Fetch posts with the 'Build in Public' tag and order by publication date
+    build_in_public_posts = Post.objects.filter(tag=build_in_public_tag).order_by(
+        "-pub_date"
+    )
+
+    # Group the posts in pairs
+    def pairwise(iterable):
+        a = iter(iterable)
+        return zip_longest(a, a)
+
+    paired_posts = list(pairwise(build_in_public_posts))
+
+    context = {"paired_posts": paired_posts}
+
+    return render(request, "post/build_in_public.html", context)
