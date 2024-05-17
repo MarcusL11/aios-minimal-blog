@@ -36,3 +36,4 @@ tinycss2==1.2.1
 types-python-dateutil==2.9.0.20240316
 urllib3==2.2.1
 webencodings==0.5.1
+tzdata

@@ -9,34 +9,17 @@ environ.Env.read_env(".env")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = eval(env("DEBUG"))
 
-# Set the environment variables
-# You can either set these here or set the environment variables such as:
-# export ALLOWED_HOSTS=http://example.com,https://example.com,localhost
-
-# ALLOWED_HOSTS = ['http://example.com', 'https://example.com', 'localhost']
-# CSRF_TRUSTED_ORIGINS = ['http://example.com', 'https://example.com']
-
-hosts = eval(
-    env("ALLOWED_HOSTS")
-)  # .environ.get('ALLOWED_HOSTS', 'localhost').split(',')
-
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
-ALLOWED_HOSTS = hosts
-CSRF_TRUSTED_ORIGINS = ["http://" + host for host in hosts] + [
-    "https://" + host for host in hosts
-]
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -100,6 +83,19 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": env("POSTGRES_DB"),
+#         "USER": env("POSTGRES_USER"),
+#         "PASSWORD": env("POSTGRES_PASSWORD"),
+#         "HOST": env("POSTGRES_HOST"),
+#         "PORT": env("POSTGRES_PORT"),
+#     }
+# }
+#
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
