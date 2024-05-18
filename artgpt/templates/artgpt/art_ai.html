@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}MarcusL-ArtAI{% endblock %}
+
+{% block content %}
+<div class="px-4 sm:px-8 sm:mt-12 mb-20">
+  <div class="mx-auto w-full max-w-7xl lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-5xl">
+ 
+
+      <div class="flex flex-col items-center">
+        <header class="max-w-lg my-6">
+          <h2 class="text-4xl text-base-content sm:text-5xl">GRUG Stack Developer PFP Generator</h2>
+        </header>
+
+        <section class="my-10">
+          <div class="carousel rounded-box w-96">
+            {% for image in generated_images %}
+            <div class="carousel-item w-1/2">
+              <img src="{{ image.image.url }}" class="w-full" />
+            </div> 
+            {% endfor %}
+          </div>
+        </section>
+
+        <form hx-post="{% url 'generate_artwork' %}" hx-target="#image-container" hx-swap="innerHTML" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="api-key" class="block text-gray-700 font-bold mb-2">OpenAI API Key</label>
+                <input type="password" id="api-key" name="openai_api_key" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+            </div>
+            <div class="mb-4">
+                <label for="gender" class="block text-gray-700 font-bold mb-2">Gender</label>
+                <select id="gender" name="gender" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="primary-color" class="block text-gray-700 font-bold mb-2">Primary Color (Hex Code)</label>
+                <input type="text" id="primary-color" name="primary_color" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+            </div>
+            <div class="mb-4">
+                <label for="props" class="block text-gray-700 font-bold mb-2">Props (Max 3, separated by commas)</label>
+                <input type="text" id="props" name="props" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+            </div>
+            <button type="submit" class="w-full py-2 px-4 bg-[#a1887f] text-white font-bold rounded-md hover:bg-[#8d766c] transition-colors duration-300">Generate Image</button>
+        </form>
+
+        <!--Image Container-->
+        <div id="image-container" class="mt-6"></div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

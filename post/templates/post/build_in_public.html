@@ -2,50 +2,82 @@
 {% load static %}
 {% block title %}MarcusL- Build in Public{% endblock %}
 {% block sidebar %}
-<div class="px-4 sm:px-8 mt-10 sm:mt-14 mb-20">
+<div class="px-4 sm:px-8 mt-10 sm:mt-12 mb-20">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
 
       <header class="max-w-2xl mb-10">
-        <h2 class="text-4xl text-base-content sm:text-5xl">Build in Public Log</h2>
-        <p>Some of the things I am working on, learning and sharing</p>
+        <h2 class="text-4xl text-base-content sm:text-5xl">Build in Public</h2>
       </header>
 
-      <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-        {% for post1, post2 in paired_posts %}
-          {% if post1 %}
-          <li>
-            <div class="timeline-middle">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
-              </svg>
+      <section class="mb-10">
+        <header class="max-w-2xl mb-4">
+          <h3 class="text-xl text-base-content sm:text-2xl">Featured Builds</h2>
+        </header>
+        <a href="{% url 'artgpt' %}">
+          <div class="card w-96 bg-base-100 shadow-xl">
+            <figure><img src="{% static 'images/about_profile_picture_main.png' %}" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 class="card-title">
+                GRUG Stack Futuristic Style PFP Generator
+                <div class="badge badge-secondary">NEW</div>
+              </h2>
+              <p>Generate your profile picture in the GRUG Stack style. Personalizing it with your favorite color and props.</p>
+              <div class="card-actions justify-end">
+                <div class="badge badge-outline">ChatGPT</div> 
+                <div class="badge badge-outline">Art</div>
+              </div>
             </div>
-            <div class="timeline-start md:text-end mb-10">
-              <div class="font-mono italic">{{ post1.pub_date|date:"Y · M · d"  }}</div>
-              <a href="{% url 'post_detail' post_id=post1.id %}" class="hover:text-accent duration-400"><div class="text-lg font-black">{{ post1.title }}</div></a>
-              <p>{{ post1.content_preview }}</p>
-            </div>
-            <hr/>
-          </li>
+          </div>
+        </a>
+      </section>
+
+      <section class="mb-10">
+        <header class="max-w-2xl mb-4">
+          <h3 class="text-xl text-base-content sm:text-2xl">Building Log</h2>
+        </header>
+
+        <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+          {% if paired_posts %}
+            {% for post1, post2 in paired_posts %}
+              {% if post1 %}
+              <li>
+                <div class="timeline-middle">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="timeline-start md:text-end mb-10">
+                  <div class="font-mono italic">{{ post1.pub_date|date:"Y · M · d"  }}</div>
+                  <a href="{% url 'post_detail' post_id=post1.id %}" class="hover:text-accent duration-400"><div class="text-lg font-black">{{ post1.title }}</div></a>
+                  <p>{{ post1.content_preview }}</p>
+                </div>
+                <hr/>
+              </li>
+              {% endif %}
+              {% if post2 %}
+              <li>
+                <hr />
+                <div class="timeline-middle">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="timeline-end mb-10">
+                  <div class="font-mono italic">{{ post2.pub_date|date:"Y · M · d"  }}</div>
+                  <a href="{% url 'post_detail' post_id=post2.id %}" class="hover:text-accent duration-400"><div class="text-lg font-black">{{ post2.title }}</div></a>
+                  <p>{{ post2.content_preview }}</p>
+                </div>
+                <hr />
+              </li>
+              {% endif %}
+            {% endfor %}
+            {% else %}
+            <p>No projects yet</p>
           {% endif %}
-          {% if post2 %}
-          <li>
-            <hr />
-            <div class="timeline-middle">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div class="timeline-end mb-10">
-              <div class="font-mono italic">{{ post2.pub_date|date:"Y · M · d"  }}</div>
-              <a href="{% url 'post_detail' post_id=post2.id %}" class="hover:text-accent duration-400"><div class="text-lg font-black">{{ post2.title }}</div></a>
-              <p>{{ post2.content_preview }}</p>
-            </div>
-            <hr />
-          </li>
-          {% endif %}
-        {% endfor %}
-      </ul>    
+        </ul>    
+      </section>
+
     </div>
   </div>
 </div>

@@ -65,9 +65,7 @@ module.exports = {
             backgroundColor: '#a1887f',
             color: '#fffbeb',
             borderRadius: '1rem',
-
           },
-
           'primary': '#b3e5fc',
           'primary-focus': '#00796b',
           'primary-content': '#212121',

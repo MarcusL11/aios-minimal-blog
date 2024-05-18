@@ -43,4 +43,7 @@
   font-family: 'Roboto-Light', sans-serif; /* Adding a fallback font-family */
   font-weight: 500; /* Optional: Ensures the correct weight is applied */
   }
+  li {
+    font-family: 'Roboto-Light', sans-serif; /* Adding a fallback font-family  */
+  }
 }

@@ -9,6 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     url(r"mdeditor/", include("mdeditor.urls")),
     path("", include("post.urls")),
+    path("", include("artgpt.urls")),
 ]
 
 if settings.DEBUG:
