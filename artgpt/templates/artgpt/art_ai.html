@@ -49,6 +49,13 @@
                 <label for="props" class="block  font-bold mb-2">Choose Props (Max 3, separated by commas)</label>
                 <input type="text" id="props" name="props" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
             </div>
+
+            <!-- 
+              TODO: 
+              Need to fix so animation does not run when input values are invalud
+              Consider keydown event to check for valid input values and enable button
+              by toggling the class btn-disabled. 
+            -->
             <button 
               _="on click 
               add .hidden to #generate-text
