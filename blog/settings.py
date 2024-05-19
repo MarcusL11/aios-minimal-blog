@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import environ
+import dj_database_url
 
 # Initialise environment variables
 env = environ.Env()
@@ -13,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
 CSRF_TRUSTED_ORIGINS = [
@@ -26,6 +27,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "h1d-resilient-feynman.circumeo-apps.net",
     ".grugstack.dev",
+    "*",
 ]
 
 # Application definition
@@ -100,16 +102,17 @@ if DEBUG:
         }
     }
 else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": env("POSTGRES_DB"),
-            "USER": env("POSTGRES_USER"),
-            "PASSWORD": env("POSTGRES_PASSWORD"),
-            "HOST": env("POSTGRES_HOST"),
-            "PORT": env("POSTGRES_PORT"),
-        }
-    }
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.postgresql",
+    #         "NAME": env("POSTGRES_DB"),
+    #         "USER": env("POSTGRES_USER"),
+    #         "PASSWORD": env("POSTGRES_PASSWORD"),
+    #         "HOST": env("POSTGRES_HOST"),
+    #         "PORT": env("POSTGRES_PORT"),
+    #     }
+    # }
+    DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
