@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from itertools import zip_longest
 from .models import Post, Tag, TextAsset
+from django.db.models import Prefetch
 
 
 def post_list(request):
@@ -29,7 +30,7 @@ def post_list(request):
 
 
 def post_detail(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
+    post = get_object_or_404(Post.objects.prefetch_related("category"), pk=post_id)
     tags = Tag.objects.all()
 
     # Fetch text assets
@@ -75,8 +76,10 @@ def build_in_public(request):
     build_in_public_tag = Tag.objects.get(name="Build in Public")
 
     # Fetch posts with the 'Build in Public' tag and order by publication date
-    build_in_public_posts = Post.objects.filter(tag=build_in_public_tag).order_by(
-        "-pub_date"
+    build_in_public_posts = (
+        Post.objects.filter(tag=build_in_public_tag)
+        .order_by("-pub_date")
+        .prefetch_related("category")
     )
 
     # Group the posts in pairs

@@ -18,11 +18,17 @@
       <!-- Main Content -->
       <header class="mt-6">
         <h2 class="font-bold tracking-tight text-base-content text-2xl sm:text-3xl">{{ post.title }} </h2>
-          <p class="text-xs">Tag: <span class="text-xs badge bg-accent text-base-100">{{ post.tag.name }}</span></p>
-          <p class="text-xs">
-            Published on {{ post.pub_date }}
+        <p class="text-xs">Tag: <span class="text-xs badge bg-accent text-base-100">{{ post.tag.name }}</span></p>
+        <div class="card-actions">
+          <p class="text-xs">Category: 
+          {% for category in post.category.all %}
+          <span class="badge badge-outline text-xs">{{ category }}</span>
+          {% endfor %}
           </p>
         </div>
+        <p class="text-xs">
+        Published on {{ post.pub_date }}
+        </p>
       </header>
 
       <section class="mt-6 mb-24">

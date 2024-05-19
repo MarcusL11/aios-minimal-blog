@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "post",
     "tag",
+    "category",
     "artgpt",
     "mdeditor",
     "markdownify.apps.MarkdownifyConfig",

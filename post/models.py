@@ -4,6 +4,7 @@ from django.db import models
 from mdeditor.fields import MDTextField
 
 from tag.models import Tag
+from category.models import Category
 
 
 class Post(models.Model):
@@ -14,6 +15,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     is_index_post = models.BooleanField(default=False)
     tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True, blank=False)
+    category = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
         return self.title

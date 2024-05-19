@@ -26,6 +26,7 @@
               <div class="card-actions justify-end">
                 <div class="badge badge-outline">AI</div> 
                 <div class="badge badge-outline">Art</div>
+                <div class="badge badge-outline">DALLE 3</div>
               </div>
             </div>
           </div>
@@ -48,8 +49,15 @@
                   </svg>
                 </div>
                 <div class="timeline-start md:text-end mb-10">
-                  <div class="font-mono italic">{{ post1.pub_date|date:"Y · M · d"  }}</div>
-                  <a href="{% url 'post_detail' post_id=post1.id %}" class="hover:text-accent duration-400"><div class="text-lg font-black">{{ post1.title }}</div></a>
+                  <div class="font-mono italic">{{ post1.pub_date|date:"Y·M·d" }}</div>
+                  <a href="{% url 'post_detail' post_id=post1.id %}" class="hover:text-accent duration-400">
+                    <div class="text-lg font-black">{{ post1.title }}</div>
+                    <div class="card-actions justify-end">
+                      {% for category in post1.category.all %}
+                      <div class="badge badge-outline text-xs">{{ category }}</div> 
+                      {% endfor %}
+                    </div>
+                  </a>
                   <p>{{ post1.content_preview }}</p>
                 </div>
                 <hr/>
