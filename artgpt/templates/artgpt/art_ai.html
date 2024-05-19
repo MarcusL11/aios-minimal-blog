@@ -3,55 +3,76 @@
 {% block title %}MarcusL-ArtAI{% endblock %}
 
 {% block content %}
-<div class="px-4 sm:px-8 sm:mt-12 mb-20">
+<div class="px-4 sm:px-8mb-20">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
- 
-
       <div class="flex flex-col items-center">
-        <header class="max-w-lg my-6">
-          <h2 class="text-4xl text-base-content sm:text-5xl">GRUG Stack Developer PFP Generator</h2>
+        <header class="space-y-2 justify-center my-6">
+          <h2 class="text-4xl text-base-content sm:text-5xl">An Indie Developer PFP Generator</h2>
+          <p>Generate a unique profile picture with a twist: a futuristic yet nostalgic vintage theme. 
+          Select your gender, a primary color, and up to three props that you identify with. 
+          All you need is your <a class="link hover:text-blue-700" href="https://auth.openai.com/">OpenAI Key</a></p>
+          <p>Props will either be somewhere in the image's background like an owl or cat. Sometimes, it can be incorporated with the Character like, Cyborg and headphones.  Keep props in singular form for best results.</p>
         </header>
-
-        <section class="my-10">
-          <div class="carousel rounded-box w-96">
-            {% for image in generated_images %}
-            <div class="carousel-item w-1/2">
-              <img src="{{ image.image.url }}" class="w-full" />
-            </div> 
-            {% endfor %}
-          </div>
+        <section class="mb-10 flex items-center">
+          <img src="{% static 'images/example_1.png' %}" class="w-96" />
         </section>
-
-        <form hx-post="{% url 'generate_artwork' %}" hx-target="#image-container" hx-swap="innerHTML" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-            {% csrf_token %}
+        <form 
+          hx-post="{% url 'generate_artwork' %}" 
+          hx-target="#image-container"
+          hx-swap="innerHTML"
+          _="on htmx:afterSwap from #image-container 
+          set #api-key.value to ''
+          set #gender.value to ''
+          set #primary-color.value to '#ffffff'
+          set #props.value to ''
+          add .hidden to #loading-text
+          remove .hidden from #generate-text"
+          class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+          {% csrf_token %}
             <div class="mb-4">
-                <label for="api-key" class="block text-gray-700 font-bold mb-2">OpenAI API Key</label>
+                <label for="api-key" class="block  font-bold mb-2">Your OpenAI API Key</label>
                 <input type="password" id="api-key" name="openai_api_key" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
             </div>
             <div class="mb-4">
-                <label for="gender" class="block text-gray-700 font-bold mb-2">Gender</label>
+                <label for="gender" class="block  font-bold mb-2">Choose a Gender</label>
                 <select id="gender" name="gender" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
             </div>
-            <div class="mb-4">
-                <label for="primary-color" class="block text-gray-700 font-bold mb-2">Primary Color (Hex Code)</label>
-                <input type="text" id="primary-color" name="primary_color" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+            <div class="flex items-center space-x-3">
+              <label for="primary-color" class="block  font-bold mb-1">Choose a color:</label>
+              <input class="cursor-pointer" id="primary-color" name="primary_color" type="color" value="#ff0000"/>
             </div>
-            <div class="mb-4">
-                <label for="props" class="block text-gray-700 font-bold mb-2">Props (Max 3, separated by commas)</label>
+            <div class="my-4">
+                <label for="props" class="block  font-bold mb-2">Choose Props (Max 3, separated by commas)</label>
                 <input type="text" id="props" name="props" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
             </div>
-            <button type="submit" class="w-full py-2 px-4 bg-[#a1887f] text-white font-bold rounded-md hover:bg-[#8d766c] transition-colors duration-300">Generate Image</button>
+            <button 
+              _="on click 
+              add .hidden to #generate-text
+              remove .hidden from #loading-text"
+              type="submit" 
+              class="w-full py-2 px-4 font-bold rounded-md btn btn-accent">
+              <span id="generate-text" class="text-base-100">Generate Image</span>
+              <span id="loading-text" class="loading loading-dots loading-lg hidden"></span>
+            </button>
         </form>
 
         <!--Image Container-->
-        <div id="image-container" class="mt-6"></div>
-        
+        <div id="image-container" class="mt-6">
+          <!-- Image will be loaded here -->
+        </div>
+        {% if generated_images %}
+        <h3 class="text-2xl text-base-content">Recently Generated</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 mb-10">
+          {% for image in generated_images %}
+          <img src="{{ image.image.url }}" class="rounded-xl w-48 h-auto" />
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
-
     </div>
   </div>
 </div>

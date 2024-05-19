@@ -1,4 +1,16 @@
 <header class="z-50 relative flex flex-none flex-col container">
+  <style>
+  @font-face {
+  font-family: 'Roboto-Regular';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/static/assets/fonts/Roboto-Regular.ttf') format('truetype');
+  }
+
+  .custom-font {
+  font-family: 'Roboto-Regular', sans-serif;
+  }
+  </style>
   <!-- Navbar start -->
   <div class="navbar bg-base-100">
     <div class="lg:hidden navbar-start">
@@ -15,11 +27,12 @@
       </div>
     </div>
     <div class="navbar-center mx-auto hidden lg:flex bg-base-100">
+
       <ul class="menu menu-horizontal px-1 text-accent">
-        <li><a href="{% url 'blog_index' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'post_list' %}">Posts</a></li>
-        <li><a href="{% url 'build_in_public' %}">Build in Public</a></li>
+        <li><a class="custom-font" href="{% url 'blog_index' %}">Home</a></li>
+        <li><a class="custom-font" href="{% url 'about' %}">About</a></li>
+        <li><a class="custom-font" href="{% url 'post_list' %}">Posts</a></li>
+        <li><a class="custom-font" href="{% url 'build_in_public' %}">Build in Public</a></li>
       </ul>
     </div>
     <!-- <div class="navbar-end"> -->

@@ -16,8 +16,17 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = eval(env("DEBUG"))
 
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+CSRF_TRUSTED_ORIGINS = [
+    "https://h1d-resilient-feynman.circumeo-apps.net",
+    "https://grugstack.dev",
+]
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "h1d-resilient-feynman.circumeo-apps.net",
+    ".grugstack.dev",
+]
 
 # Application definition
 INSTALLED_APPS = [

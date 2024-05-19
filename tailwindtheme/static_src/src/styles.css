@@ -39,11 +39,15 @@
   font-family: 'Roboto-Light', sans-serif; /* Adding a fallback font-family */
   font-weight: 300; /* Optional: Ensures the correct weight is applied */
   }
-  h2, h3, h4, h5, h6 {
-  font-family: 'Roboto-Light', sans-serif; /* Adding a fallback font-family */
+  h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto-Regular', sans-serif; /* Adding a fallback font-family */
   font-weight: 500; /* Optional: Ensures the correct weight is applied */
   }
   li {
     font-family: 'Roboto-Light', sans-serif; /* Adding a fallback font-family  */
   }
+  label {
+    font-family: 'Roboto-Regular', sans-serif; /* Adding a fallback font-family  */
+  }
+
 }
