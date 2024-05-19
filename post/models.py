@@ -1,5 +1,5 @@
 # post/models.py
-from django.contrib.auth.models import User
+from signin.models import User
 from django.db import models
 from mdeditor.fields import MDTextField
 

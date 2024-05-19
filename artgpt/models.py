@@ -1,9 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
-
 class GeneratedImage(models.Model):
     gender = models.CharField(max_length=6)
     primary_color = models.CharField(max_length=7)

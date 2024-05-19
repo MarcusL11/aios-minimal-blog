@@ -10,6 +10,7 @@ urlpatterns = [
     url(r"mdeditor/", include("mdeditor.urls")),
     path("", include("post.urls")),
     path("", include("artgpt.urls")),
+    path("", include("signin.urls")),
 ]
 
 if settings.DEBUG:

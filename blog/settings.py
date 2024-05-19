@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = eval(env("DEBUG"))
+DEBUG = True
 
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
 CSRF_TRUSTED_ORIGINS = [
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "tag",
     "category",
     "artgpt",
+    "signin",
     "mdeditor",
     "markdownify.apps.MarkdownifyConfig",
     "tailwind",
@@ -303,3 +304,5 @@ if not DEBUG:
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+AUTH_USER_MODEL = "signin.User"
