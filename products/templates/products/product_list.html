@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}MarcusL- Templates{% endblock %}
+{% block content %}
+
+<div class="px-4 sm:px-8 mt-12 sm:mt-14 mb-20">
+  <div class="mx-auto w-full max-w-7xl">
+    <div class="">
+      <h2 class="sr-only">Products</h2>
+
+      <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+
+        <div class="card bg-base-100 shadow-xl">
+          <figure>
+            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">
+              Start Financial Model Template
+            </h2>
+            <p>for early stage companies and startups</p>
+            <div class=mt-2>
+              <p>Financial Model template to create the business model for your startup or fundraise...</p>
+            </div>
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary">Learn more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

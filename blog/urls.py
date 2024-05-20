@@ -11,6 +11,7 @@ urlpatterns = [
     path("", include("post.urls")),
     path("", include("artgpt.urls")),
     path("", include("signin.urls")),
+    path("", include("products.urls")),
 ]
 
 if settings.DEBUG:

@@ -48,7 +48,11 @@ def post_detail(request, post_id):
 
 
 def blog_index(request):
-    latest_posts = Post.objects.filter(is_index_post=False).order_by("-pub_date")[:3]
+    latest_posts = (
+        Post.objects.filter(is_index_post=False)
+        .order_by("-pub_date")
+        .prefetch_related("category")
+    )[:3]
 
     try:
         special_post = Post.objects.get(is_index_post=True)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "category",
     "artgpt",
     "signin",
+    "products",
     "mdeditor",
     "markdownify.apps.MarkdownifyConfig",
     "tailwind",
