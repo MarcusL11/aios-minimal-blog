@@ -11,7 +11,7 @@
           <h2 class="text-4xl text-base-content sm:text-5xl">An Indie Developer PFP Generator</h2>
           <p>Generate a unique profile picture with a twist: a futuristic yet nostalgic vintage theme. 
           Select your gender, a primary color, and up to three props that you identify with. 
-          All you need is your <a class="link hover:text-blue-700" href="https://auth.openai.com/">OpenAI Key</a></p>
+          All you need is your <a class="link hover:text-secondary" href="https://auth.openai.com/">OpenAI Key</a></p>
           <p>Props will either be somewhere in the image's background like an owl or cat. Sometimes, it can be incorporated with the Character like, Cyborg and headphones.  Keep props in singular form for best results.</p>
         </header>
         <section class="mb-10 flex items-center">
@@ -32,44 +32,68 @@
           {% csrf_token %}
             <div class="mb-4">
                 <label for="api-key" class="block  font-bold mb-2">Your OpenAI API Key</label>
-                <input type="password" id="api-key" name="openai_api_key" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+                <input 
+                  type="password" 
+                  id="api-key" 
+                  name="openai_api_key" 
+                  class="w-full px-1 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" 
+                  required
+                  _="on input
+                     if #api-key.value.trim() !== '' and #props.value.trim() !== ''
+                     remove .btn-disabled from #generate-button
+                     else
+                     add .btn-disabled to #generate-button">
             </div>
             <div class="mb-4">
-                <label for="gender" class="block  font-bold mb-2">Choose a Gender</label>
+                <label for="gender" class="block  font-bold mb-2">choose a gender</label>
                 <select id="gender" name="gender" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
                 </select>
             </div>
             <div class="flex items-center space-x-3">
-              <label for="primary-color" class="block  font-bold mb-1">Choose a color:</label>
+              <label for="primary-color" class="block  font-bold mb-1">choose a color:</label>
               <input class="cursor-pointer" id="primary-color" name="primary_color" type="color" value="#ff0000"/>
             </div>
             <div class="my-4">
-                <label for="props" class="block  font-bold mb-2">Choose Props (Max 3, separated by commas)</label>
-                <input type="text" id="props" name="props" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" required>
+                <label for="props" class="block  font-bold mb-2">choose props (max 3, separated by commas)</label>
+                <input 
+                  type="text" 
+                  id="props" 
+                  name="props" 
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#a1887f]" 
+                  required
+                  _="on input
+                    if #api-key.value.trim() !== '' and #props.value.trim() !== ''
+                    remove .btn-disabled from #generate-button
+                    else
+                    add .btn-disabled to #generate-button">
             </div>
 
-            <!-- 
-              TODO: 
-              Need to fix so animation does not run when input values are invalud
-              Consider keydown event to check for valid input values and enable button
-              by toggling the class btn-disabled. 
-            -->
             <button 
               _="on click 
               add .hidden to #generate-text
-              remove .hidden from #loading-text"
+              remove .hidden from #loading-text
+              remove .hidden from #warning-msg"
+              id="generate-button"
               type="submit" 
-              class="w-full py-2 px-4 font-bold rounded-md btn btn-accent">
+              class="w-full py-2 px-4 font-bold rounded-md btn btn-accent btn-disabled">
               <span id="generate-text" class="text-base-100">Generate Image</span>
-              <span id="loading-text" class="loading loading-dots loading-lg hidden"></span>
+              <span id="loading-text" class="loading loading-dots loading-lg hidden text-base-100"></span>
             </button>
+            <p id="warning-msg" class="text-sm text-base-content mt-2 hidden">Please note that the image generation process can take up to 60 seconds. Do not refresh the page.</p>
         </form>
 
-        <!--Image Container-->
-        <div id="image-container" class="mt-6">
-          <!-- Image will be loaded here -->
+        <!--image container-->
+        <div 
+          id="image-container" 
+          class="mt-6"
+          _"on htmx:afterSwap 
+          add .hidden to #loading-text
+          remove .hidden from #generate-text
+          add .hidden to warning-msg"
+        >
+          <!-- image will be loaded here -->
         </div>
         {% if generated_images %}
         <h3 class="text-2xl text-base-content">Recently Generated</h3>

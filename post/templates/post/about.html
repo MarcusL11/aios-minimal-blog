@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}MarcusL-Post List{% endblock %}
-
+{% load static markdownify %}
 {% block content %}
   <style>
   @font-face {
@@ -29,46 +29,41 @@
 
         <!-- Content -->
         <div class="lg:order-first lg:row-span-2">
-          <h2 class="text-4xl text-base-content sm:text-5xl">They say <a href="https://explodingtopics.com/blog/startup-failure-stats" class="text-accent custom-font hover:text-secondary">80% of Startups fail.</a> Hoping what I share <span class="text-accent">improve the odds for founders.</span></h2>
-
-          <section class="mt-10">
-            <h3 class="font-bold tracking-tight text-base-content text-lg sm:text-xl">My Current</h3>
-            <div class="space-y-2 text-base-content ">
-              <p>
-              I'm currently with a venture builder investing in deep tech startups.  We're all about AI, robotics, and the cool tech that's shaping the future.
-              I do my best to make sure our investments survive, finding strategic partnerships, and managing any operational hiccups that comes along the way.
-              </p>
-            </div>
-          </section>
-
-          <section class="mt-8">
-            <h3 class="font-bold tracking-tight text-base-content text-lg sm:text-xl">My Past</h3>
-            <div class="space-y-2 text-base-content ">
-              <p>
-              I've been involved in wealth management, private equity, and distressed investments. Eventually, I built my own statup, scaled it and exited. I've been through the full cycle, seen the good, the bad, and the ugly from both sides of the table as a Founder and Investor.
-              </p>
-            <div>
-          </section>
-
-          <section class="mt-8">
-            <h3 class="font-bold tracking-tight text-base-content text-lg sm:text-xl">My Intersts</h3>
-            <div class="space-y-2 text-base-content ">
-              <p>
-              Outside of work, I'm a huge AI geek.  Recently been heads deep in web development, AI Agents and task automation, aiming to create a personalized system that makes life easier for me and my family.
-              When I'm not geeking out over AI, I'm most likely on the golf course, exploring nature, with the fam, or lost in a good series about ancient civilizations.
-              </p>
-            </div>
-          </section>
-  
-          <section class="my-8">
-            <h3 class="font-bold tracking-tight text-base-content text-lg sm:text-xl">My GRUG Stack</h3>
-            <p>Learning and Building <a href="https://htmx.org/essays/hateoas/" class="link hover:text-secondary" blank="true">HATEOAS-Driven </a><a href="https://htmx.org/essays/hypermedia-driven-applications/" class="link hover:text-secondary"> Hypermedia Applications.</a> with the following stack:</p>
-            <ul class="my-2 list-disc pl-8">
-              <li>Django</li>
-              <li>TailwindCSS + DaisyUI</li>
-              <li>HTMX</li>
-              <li>Hyperscript</li>
-            </ul>
+          <header class="max-w-2xl">
+            <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
+              <span class="text-accent">{ GRUG Stack }</span>
+            </h1>
+            <p class="mt-6 text-base text-base-content">
+            The GRUG Stack is a <a href="https://htmx.org/essays/hypermedia-driven-applications/" class="link hover:text-secondary">Hypermedia-Driven Application</a> development environment
+            simplifying the creation of web apps for full-stack developers, avoiding the complexities of modern Single Page Application (SPA) Development.
+            </p>
+            <p class="mt-6 text-base text-base-content">
+            Thg GRUG Stack includes Django, TailwindCSS, HTMX, and Hyperscript.
+            </p>
+          </header>
+          <section class="mt-10 sm:mt-16">
+            <h2 class="font-bold tracking-tight text-base-content text-2xl sm:text-3xl">Latest Posts</h2>
+            {% for post in latest_posts %}
+            <article class="mt-6">
+              <a href="{% url 'post_detail' post.id %}">
+                <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-500">
+                  <h3 class="text-2xl font-bold">{{ post.title }}</h3>
+                  <p class="mt-2 mb-1">{{ post.pub_date }}</p>
+                  <p class="text-xs mb-1">Tag: <span class="badge badge-outline">{{ post.tag.name }}</span></p>
+                  <div class="flex items-center gap-2">
+                    <p class="text-xs">Category: </p> 
+                    {% for category in post.category.all %}
+                    <p class="badge badge-outline text-xs">{{ category }}</p> 
+                    {% endfor %}
+                  </div>
+                  <div class="mt-2">
+                    {{ post.content | markdownify | striptags | truncatechars:200 }}
+                  </div>
+                  <a class="mt-4 hover:text-primary underline" href="{% url 'post_detail' post.id %}">Read more</a>
+                </div>
+              </a>
+            </article>
+            {% endfor %}
           </section>
 
         </div>

@@ -72,7 +72,28 @@ def blog_index(request):
 
 
 def about(request):
-    return render(request, "post/about.html")
+    latest_posts = (
+        Post.objects.filter(is_index_post=False)
+        .order_by("-pub_date")
+        .prefetch_related("category")
+    )[:3]
+
+    try:
+        special_post = Post.objects.get(is_index_post=True)
+    except Post.DoesNotExist:
+        special_post = None
+
+    logo_asset = TextAsset.objects.filter(asset_type="logo").first()
+    copyright_asset = TextAsset.objects.filter(asset_type="copyright").first()
+
+    context = {
+        "special_post": special_post,
+        "logo_asset": logo_asset,
+        "copyright_asset": copyright_asset,
+        "latest_posts": latest_posts,
+    }
+
+    return render(request, "post/about.html", context)
 
 
 def build_in_public(request):
