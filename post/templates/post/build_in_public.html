@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}MarcusL- Build in Public{% endblock %}
 {% block sidebar %}
-<div class="px-4 sm:px-8 mt-10 sm:mt-12 mb-20">
+<div class="px-4 sm:px-8 mt-6 sm:mt-8">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
 
@@ -14,30 +14,37 @@
         <header class="max-w-2xl mb-4">
           <h3 class="text-xl text-base-content sm:text-2xl">Featured Builds</h2>
         </header>
-        <a href="{% url 'artgpt' %}">
-          <div class="card w-96 bg-base-100 shadow-xl">
-            <figure><img src="{% static 'images/about_profile_picture_main.png' %}" alt="An Indie Developer PFP Generator" /></figure>
-            <div class="card-body">
-              <h2 class="card-title">
-                An Indie Developer PFP Generator
-                <div class="badge badge-secondary">NEW</div>
-              </h2>
-              <p>Generate your profile picture in the vintage style with a futuristic twist theme. Personalizing it with your favorite color and props.</p>
-              <div class="card-actions justify-end">
-                <div class="badge badge-outline">AI</div> 
-                <div class="badge badge-outline">Art</div>
-                <div class="badge badge-outline">DALLE 3</div>
+
+        <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+          <a href="{% url 'artgpt' %}">
+            <div class="card bg-base-100 shadow-xl">
+              <figure><img src="{% static 'images/about_profile_picture_main.png' %}" alt="An Indie Developer PFP Generator"/></figure>
+              <div class="card-body">
+                <h2 class="card-title">
+                  An Indie Developer PFP Generator
+                  <div class="badge badge-secondary">NEW</div>
+                </h2>
+                <p>Generate your profile picture in the vintage style with a futuristic twist theme. Personalizing it with your favorite color and props.</p>
+                <div class="card-actions justify-end">
+                  <div class="badge badge-outline">AI</div> 
+                  <div class="badge badge-outline">Art</div>
+                  <div class="badge badge-outline">DALLE 3</div>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </section>
 
-      <section class="mb-10">
-        <header class="max-w-2xl mb-4">
-          <h3 class="text-xl text-base-content sm:text-2xl">Building Log</h2>
-        </header>
 
+      <section class="mb-10">
+
+        <div class="divider">
+          <header class="max-w-2xl mb-4">
+            <h3 class="text-xl text-base-content sm:text-2xl">Build Log</h2>
+          </header>
+        </div>
+       
         <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
           {% if paired_posts %}
             {% for post1, post2 in paired_posts %}
