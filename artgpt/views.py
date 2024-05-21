@@ -88,7 +88,7 @@ def artwork_modal(request):
         modal_close = True if modal_action == "close" else False
 
         if modal_close:
-            return render(request, "artgpt/htmx/testing.html")
+            return HttpResponse("")
 
         else:
             # Retrieve the values from the post request

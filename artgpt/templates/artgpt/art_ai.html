@@ -3,10 +3,6 @@
 {% block title %}MarcusL-ArtAI{% endblock %}
 
 {% block content %}
-<div id="artwork_modal_container">
-  <!-- htmx afterswap modal -->
-</div>
-
 <div class="px-4 sm:px-8mb-20">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
@@ -103,7 +99,7 @@
         <h3 class="text-2xl text-base-content">Recently Generated</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 mb-10">
           {% for image in generated_images %}
-          <div class="btn-ghost hover:scale-105 shadow-lg duration-300 rounded-xl"
+          <div id="close-trigger" class="btn-ghost hover:scale-105 shadow-lg duration-300 rounded-xl"
                 hx-post="{% url 'artwork_modal' %}" 
                 hx-swap="innerHTML"
                 hx-vals='{"image_url": "{{ image.image.url }}"}'
@@ -119,4 +115,9 @@
   </div>
 
 </div>
+<div id="artwork_modal_container">
+  <!-- htmx afterswap modal -->
+</div>
+
+
 {% endblock %}

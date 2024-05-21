@@ -1,12 +1,17 @@
 {% load static %}
-  <div class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
+<div class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
+  <div class="relative">
     <img src="{{ image_url }}" class="rounded-xl max-w-full max-h-screen" />
     <button
         hx-post="{% url 'artwork_modal' %}"
         hx-target="#artwork_modal_container"
-        hx-vals='{"moda_action": "close"}'
+        hx-vals='{"modal_action": "close"}'
         hx-swap="innerHTML"
-        class="btn btn-secondary">
-      Close
+        _="on keyup[key is 'Escape'] from document
+        set #artwork_modal_container.innerHTML to '' "
+        class="absolute top-2 right-2 btn btn-secondary">
+      X
     </button>
+
   </div>
+</div>
