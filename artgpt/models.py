@@ -9,4 +9,4 @@ class GeneratedImage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.gender} - {self.primary_color} - {self.props}"
+        return f"{self.id} - {self.gender} - {self.primary_color} - {self.props}"

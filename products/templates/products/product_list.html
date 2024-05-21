@@ -7,42 +7,34 @@
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
 
-      <header class="">
-        <h2 class="text-4xl text-base-content sm:text-5xl">Templates</h2>
+      <header class="mb-20">
+        <h2 class="text-4xl text-accent sm:text-5xl">Swag</h2>
       </header>
-      <section class="my-4 mb-18">
-        <p>
-        Our templates are designed to help you get started with your business, fundraise, or financial planning.
-        They are easy to use and can be customized to your needs. These are some of my favorite templates that I have use
-        in the past to manage my business, fundraise, and agreements with investors.
-        </p>
-      </section>
-
-      <section sr-only="Category section">
-        <!-- Category section -->
+      <section sr-only="category section">
+        <!-- category section -->
       </section>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="card bg-base-100 shadow-xl">
-          <figure>
-            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">
-              Starter Financial Model Template
-              <div class="badge badge-secondary">NEW</div>
-            </h2>
-            <p>for early stage companies and startups</p>
-            <div class=mt-2>
-              <p>Financial Model template to create the business model for your startup or fundraise...</p>
-            </div>
-            <div class="card-actions justify-start">
-              <a class="mt-4 hover:text-primary underline" href="">Learn more</a>
+        {% for product, front_image in products_with_images %}
+          <div class="card bg-base-100 shadow-xl">
+            {% if front_image %}
+              <figure>
+                <img 
+                  src="{{ front_image.image.url }}" 
+                  alt="{{ front_image.image_tag }}" 
+                  class="h-full w-full object-cover object-center group-hover:opacity-75">
+              </figure>
+            {% endif %}
+            <div class="card-body">
+              <h2 class="card-title">
+                {{ product.name }}
+              </h2>
+              <p>{{ product.description }}</p>
+              <p> $ {{ product.price }}</p>
             </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-
     </div>
   </div>
 </div>

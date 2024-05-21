@@ -67,19 +67,15 @@ module.exports = {
             borderRadius: '1rem',
           },
           'primary': '#b3e5fc',
-          'primary-focus': '#00796b',
           'primary-content': '#212121',
 
           'secondary': '#b2dfdb',
-          'secondary-focus': '#8bc34a',
           'secondary-content': '#212121',
 
           'accent': '#a1887f',
-          'accent-focus': '#a3aea4',
           'accent-content': '#212121',
 
-          'neutral': '#d5d5d5',
-          'neutral-focus': '#9fa4a3',
+          'neutral': '#9fa4a3',
           'neutral-content': '#212121',
 
           'base-100': '#fffbeb',

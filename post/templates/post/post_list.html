@@ -7,13 +7,13 @@
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
       <header class="max-w-2xl mb-10">
-        <h2 class="text-4xl text-base-content sm:text-5xl">Posts Archive</h2>
+        <h2 class="text-4xl text-accent sm:text-5xl">Posts Archive</h2>
       </header>
       {% if posts %}
       <ul class="list-none">
         {% for post in posts %}
         <a href="{% url 'post_detail' post_id=post.id %}" class="hover:text-accent">
-          <div class="flex">
+          <div class="flex text-base-content hover:text-secondary">
             <li class="mb-2 mr-4 hidden sm:block">
               <td>{{ post.pub_date|date:"Y · M · d" }}</td>
             </li>
@@ -28,7 +28,7 @@
         {% endfor %}
       </ul> 
       {% else %}
-      <p> No posts yet. </p>
+      <p> no posts yet. </p>
       {% endif %}
     </div>
   </div>

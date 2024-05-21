@@ -3,6 +3,10 @@
 {% block title %}MarcusL-ArtAI{% endblock %}
 
 {% block content %}
+<div id="artwork_modal_container">
+  <!-- htmx afterswap modal -->
+</div>
+
 <div class="px-4 sm:px-8mb-20">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
@@ -28,7 +32,7 @@
           set #props.value to ''
           add .hidden to #loading-text
           remove .hidden from #generate-text"
-          class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+          class="w-full max-w-md p-6 bg-secondary rounded-lg shadow-xl">
           {% csrf_token %}
             <div class="mb-4">
                 <label for="api-key" class="block  font-bold mb-2">Your OpenAI API Key</label>
@@ -99,12 +103,23 @@
         <h3 class="text-2xl text-base-content">Recently Generated</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 mb-10">
           {% for image in generated_images %}
-          <img src="{{ image.image.url }}" class="rounded-xl w-48 h-auto" />
+          <div
+            hx-post="{% url 'artwork_modal' %}"
+            hx-target="#artwork_modal_container"
+            hx-swap="innerhtml"
+            hx-include="[name='image_id']"
+            hx-trigger="click"
+            class="btn-ghost hover:scale-105 duration-300 shadow-xl"
+            type="submit">
+            <input type="hidden" name="image_id" value="{{ image.id }}">
+            <img src="{{ image.image.url }}" class="rounded-xl w-48 h-auto" />
+          </div>
           {% endfor %}
         </div>
         {% endif %}
       </div>
     </div>
   </div>
+
 </div>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}MarcusL-Post List{% endblock %}
 {% load static markdownify %}
 {% block content %}
-  <style>
+<style>
   @font-face {
   font-family: 'Roboto-Regular';
   font-style: normal;
@@ -14,7 +14,12 @@
   .custom-font {
   font-family: 'Roboto-Regular', sans-serif;
   }
-  </style>
+  .stacked-tilde {
+    display: inline-block;
+    line-height: 0.35;
+    vertical-align: middle;
+  }
+</style>
 <div class="px-4 sm:px-8 mt-6 sm:mt-8">
   <div class="mx-auto w-full max-w-7xl lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
@@ -30,24 +35,32 @@
         <!-- Content -->
         <div class="lg:order-first lg:row-span-2">
           <header class="max-w-2xl">
+            <h1 class="mb-2 text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
+              <span class="text-accent">{ ///_ &lt;/&gt; <span class="stacked-tilde">~<br>~</span> }</span>
+            </h1>
             <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
-              <span class="text-accent">{ GRUG Stack }</span>
+              <span class="text-accent">GRUG Stack</span>
             </h1>
             <p class="mt-6 text-base text-base-content">
-            The GRUG Stack is a <a href="https://htmx.org/essays/hypermedia-driven-applications/" class="link hover:text-secondary">Hypermedia-Driven Application</a> development environment
-            simplifying the creation of web apps for full-stack developers, avoiding the complexities of modern Single Page Application (SPA) Development.
+            The GRUG stack is a 
+            <a 
+              href="https://htmx.org/essays/hypermedia-driven-applications/" 
+              class="text-base-content underline hover:text-secondary">hypermedia-driven application
+            </a> 
+            development environment
+            simplifying the creation of web apps for full-stack developers, avoiding the complexities of modern single page application (spa) development.
             </p>
             <p class="mt-6 text-base text-base-content">
-            Thg GRUG Stack includes Django, TailwindCSS, HTMX, and Hyperscript.
+            Thg GRUG stack includes Django, Tailwindcss, HTMX, and Hyperscript.
             </p>
           </header>
-          <section class="mt-10 sm:mt-16">
-            <h2 class="font-bold tracking-tight text-base-content text-2xl sm:text-3xl">Latest Posts</h2>
+          <section class="mt-10 sm:mt-16 text-base-content">
+            <h2 class="font-bold tracking-tight text-neutral text-2xl sm:text-3xl">Latest Posts</h2>
             {% for post in latest_posts %}
             <article class="mt-6">
               <a href="{% url 'post_detail' post.id %}">
-                <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-500">
-                  <h3 class="text-2xl font-bold">{{ post.title }}</h3>
+                <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-300">
+                  <p class="text-lg font-bold">{{ post.title }}</p>
                   <p class="mt-2 mb-1">{{ post.pub_date }}</p>
                   <p class="text-xs mb-1">Tag: <span class="badge badge-outline">{{ post.tag.name }}</span></p>
                   <div class="flex items-center gap-2">
@@ -74,7 +87,7 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-accent">
                   <path d="M13.3174 10.7749L19.1457 4H17.7646L12.7039 9.88256L8.66193 4H4L10.1122 12.8955L4 20H5.38119L10.7254 13.7878L14.994 20H19.656L13.3171 10.7749H13.3174ZM11.4257 12.9738L10.8064 12.0881L5.87886 5.03974H8.00029L11.9769 10.728L12.5962 11.6137L17.7652 19.0075H15.6438L11.4257 12.9742V12.9738Z"></path>
                 </svg>
-                <span class="ml-4">Follow on X</span>
+                <span class="ml-4">My X</span>
               </a>
             </li>
             <li class="mt-4 flex"><a class="group flex text-sm font-medium text-base-content transition hover:text-accent :text-zinc-200 " href="{% url 'build_in_public' %}">

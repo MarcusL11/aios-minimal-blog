@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from .forms import ArtRequestForm
 from openai import OpenAI
@@ -7,10 +7,11 @@ import requests
 from django.core.files.base import ContentFile
 from .models import GeneratedImage
 import uuid
+from django.http import HttpResponse
 
 
 def artgpt(request):
-    generated_images = GeneratedImage.objects.all().order_by("-created_at")[:10]
+    generated_images = GeneratedImage.objects.all()
     context = {"generated_images": generated_images}
     return render(request, "artgpt/art_ai.html", context)
 
@@ -78,3 +79,20 @@ def generate_artwork(request):
             # If form is not valid, return errors
             print("Form is not valid")
             return render(request, "artgpt/htmx/generate_artwork_error.html")
+
+
+def artwork_modal(request):
+    if request.method == "POST":
+        modal_action = request.POST.get("modal_action")
+        modal_close = True if modal_action == "close" else False
+        if modal_close:
+            return HttpResponse(" ")
+        else:
+            image_id = request.POST.get("image_id")
+            print("Image ID: ", image_id)
+            generated_image = get_object_or_404(GeneratedImage, id=image_id)
+            generated_image_url = generated_image.image.url
+            context = {"generated_image_url": generated_image_url}
+            return render(request, "artgpt/htmx/open_modal_art.html", context)
+    else:
+        return HttpResponse("Invalid request")
