@@ -83,16 +83,19 @@ def generate_artwork(request):
 
 def artwork_modal(request):
     if request.method == "POST":
+        # Manage the open and close state
         modal_action = request.POST.get("modal_action")
         modal_close = True if modal_action == "close" else False
+
         if modal_close:
-            return HttpResponse(" ")
+            return render(request, "artgpt/htmx/testing.html")
+
         else:
-            image_id = request.POST.get("image_id")
-            print("Image ID: ", image_id)
-            generated_image = get_object_or_404(GeneratedImage, id=image_id)
-            generated_image_url = generated_image.image.url
-            context = {"generated_image_url": generated_image_url}
+            # Retrieve the values from the post request
+            image_url = request.POST.get("image_url")
+
+            context = {"image_url": image_url}
+
             return render(request, "artgpt/htmx/open_modal_art.html", context)
     else:
         return HttpResponse("Invalid request")

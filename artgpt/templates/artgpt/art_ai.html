@@ -103,16 +103,13 @@
         <h3 class="text-2xl text-base-content">Recently Generated</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 mb-10">
           {% for image in generated_images %}
-          <div
-            hx-post="{% url 'artwork_modal' %}"
-            hx-target="#artwork_modal_container"
-            hx-swap="innerhtml"
-            hx-include="[name='image_id']"
-            hx-trigger="click"
-            class="btn-ghost hover:scale-105 duration-300 shadow-xl"
-            type="submit">
-            <input type="hidden" name="image_id" value="{{ image.id }}">
-            <img src="{{ image.image.url }}" class="rounded-xl w-48 h-auto" />
+          <div class="btn-ghost hover:scale-105 shadow-lg duration-300 rounded-xl"
+                hx-post="{% url 'artwork_modal' %}" 
+                hx-swap="innerHTML"
+                hx-vals='{"image_url": "{{ image.image.url }}"}'
+                hx-target="#artwork_modal_container">
+              <img 
+                src="{{ image.image.url }}"/>
           </div>
           {% endfor %}
         </div>

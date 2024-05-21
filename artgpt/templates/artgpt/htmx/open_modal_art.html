@@ -1,15 +1,12 @@
 {% load static %}
-<div class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
-  <div class="relative">
-    <img src="{{ generated_image_url }}" class="rounded-xl max-w-full max-h-screen" />
+  <div class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
+    <img src="{{ image_url }}" class="rounded-xl max-w-full max-h-screen" />
     <button
-        id="close_modal_btn"
         hx-post="{% url 'artwork_modal' %}"
-        hx-include="[name='modal_action']"
         hx-target="#artwork_modal_container"
-        class="btn btn-secondary absolute top-2 right-2">
+        hx-vals='{"moda_action": "close"}'
+        hx-swap="innerHTML"
+        class="btn btn-secondary">
       Close
     </button>
-    <input type="hidden" name="modal_action" value="close" />
   </div>
-</div>
