@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
 CSRF_TRUSTED_ORIGINS = [
