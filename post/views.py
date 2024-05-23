@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from itertools import zip_longest
 from .models import Post, Tag, TextAsset
 from django.db.models import Prefetch
+from django.http import HttpResponse
 
 
 def post_list(request):
@@ -12,7 +13,7 @@ def post_list(request):
 
     if search_query:
         posts = posts.filter(
-            Q(title__icontains=search_query) | Q(tag__name__icontains=search_query)
+            Q(title__icontains=search_query) | Q(tag__number__icontains=search_query)
         )
 
     logo_asset = TextAsset.objects.filter(asset_type="logo").first()
@@ -117,3 +118,25 @@ def build_in_public(request):
     context = {"paired_posts": paired_posts}
 
     return render(request, "post/build_in_public.html", context)
+
+
+def pfp_change(request):
+    if request.method == "POST":
+        current_file_number = request.POST.get("current_file_number")
+
+        # Convert to integer
+        current_file_number = int(current_file_number)
+
+        # Logic to determine the next file number
+        if current_file_number < 14:
+            file_number = current_file_number + 1
+        else:
+            file_number = 1
+
+        # Prepare context with the new file number
+        context = {"file_number": str(file_number)}
+
+        # Render the response with the new context
+        return render(request, "post/htmx/pfp_change.html", context)
+    else:
+        return HttpResponse("Invalid request method")

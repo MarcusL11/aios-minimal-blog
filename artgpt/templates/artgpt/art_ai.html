@@ -101,7 +101,7 @@
           {% for image in generated_images %}
           <div id="close-trigger" class="btn-ghost hover:scale-105 shadow-lg duration-300 rounded-xl"
                 hx-post="{% url 'artwork_modal' %}" 
-                hx-swap="innerHTML"
+                hx-swap="innerHTML transition:true"
                 hx-vals='{"image_url": "{{ image.image.url }}"}'
                 hx-target="#artwork_modal_container">
               <img 

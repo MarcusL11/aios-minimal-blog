@@ -6,7 +6,7 @@
         hx-post="{% url 'artwork_modal' %}"
         hx-target="#artwork_modal_container"
         hx-vals='{"modal_action": "close"}'
-        hx-swap="innerHTML"
+        hx-swap="innerHTML transition:true"
         _="on keyup[key is 'Escape'] from document
         set #artwork_modal_container.innerHTML to '' "
         class="absolute top-2 right-2 btn btn-secondary">

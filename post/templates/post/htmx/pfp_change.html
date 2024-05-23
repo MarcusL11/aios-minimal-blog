@@ -1,0 +1,9 @@
+{% load static %}
+<button 
+  hx-post="{% url 'pfp_change' %}" 
+  hx-swap="innerHTML transition:true" 
+  hx-target="closest div" 
+  hx-vals='{"current_file_number":"{{ file_number }}"}'
+  type="submit">
+  <img src="{% static 'images/artai_examples/' %}{{ file_number }}.png" class="rounded-xl w-full h-auto"/>
+</button>
