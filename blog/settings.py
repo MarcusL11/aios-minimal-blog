@@ -18,7 +18,7 @@ DEBUG = True
 
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
 CSRF_TRUSTED_ORIGINS = [
-    "https://h1d-resilient-feynman.circumeo-apps.net",
+    "https://if8-ingenious-tesla.circumeo-apps.net",
     "https://grugstack.dev",
 ]
 

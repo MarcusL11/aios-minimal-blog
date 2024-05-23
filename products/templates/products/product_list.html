@@ -16,23 +16,25 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for product, front_image in products_with_images %}
-          <div class="card bg-base-100 shadow-xl">
-            {% if front_image %}
-              <figure>
-                <img 
-                  src="{{ front_image.image.url }}" 
-                  alt="{{ front_image.image_tag }}" 
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </figure>
-            {% endif %}
-            <div class="card-body">
-              <h2 class="card-title">
-                {{ product.name }}
-              </h2>
-              <p>{{ product.description }}</p>
-              <p> $ {{ product.price }}</p>
+          <a href="{% url 'product_detail' product_id=product.id %}" class="">
+            <div class="card bg-base-100 shadow-xl">
+              {% if front_image %}
+                <figure>
+                  <img 
+                    src="{{ front_image.image.url }}" 
+                    alt="{{ front_image.image_tag }}" 
+                    class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </figure>
+              {% endif %}
+              <div class="card-body">
+                <h2 class="card-title">
+                  {{ product.name }}
+                </h2>
+                <p>{{ product.description }}</p>
+                <p> $ {{ product.price }}</p>
+              </div>
             </div>
-          </div>
+          </a>
         {% endfor %}
       </div>
     </div>

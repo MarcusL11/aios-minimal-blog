@@ -42,7 +42,11 @@ module.exports = {
     // '../../**/*.py'
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
+    },
     container: {
       center: true,
       padding: {
