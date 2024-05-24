@@ -8,6 +8,8 @@ from django.core.files.base import ContentFile
 from .models import GeneratedImage
 import uuid
 from django.http import HttpResponse
+import time
+from django.http import JsonResponse
 
 
 def artgpt(request):
@@ -41,6 +43,11 @@ def generate_artwork(request):
                     n=1,
                 )
                 image_url = response.data[0].url
+
+                # Simulate progress bar
+                for i in range(1, 101):
+                    time.sleep(0.1)
+                    yield JsonResponse({"progress": i})
 
                 # Download the image
                 image_response = requests.get(image_url)

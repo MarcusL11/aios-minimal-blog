@@ -12,36 +12,54 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
     <link rel="stylesheet" href="{% static 'css/code-styles.css' %}">
-    <script src="https://unpkg.com/hyperscript.org@0.9.12" defer></script> 
+    <link rel="stylesheet" href="{% static 'css/slide-it.css' %}">
+    <script src="https://unpkg.com/hyperscript.org@0.9.12" defer></script> <!-- TODO: Download and host it -->
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
     <link rel="manifest" href="{% static 'assets/site.webmanifest' %}">
     <title>{% block title %}{% endblock %}</title>
     {% tailwind_css %}
-    
-
   </head>
 
   <body class="h-full" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="relative flex w-full flex-col ">
-      <!-- Header -->
+      <!-- Header start -->
       {% include 'partials/_header.html'%}
+      <!-- Header end -->
 
-      <!-- Main Content Block -->
+      <!-- Main Content Block start-->
       <main>
-        <div class="flex-auto container">
-          {% block content %}
-          {% endblock content %}
+        <div id="content" class="transition-opacity duration-500 ease-in-out opacity-0 container">
+          <div class="flex-auto">
+            {% block content %}
+            {% endblock content %}
+          </div>
+          <aside>
+            {% block sidebar %}
+            {% endblock sidebar %}
+          </aside>
         </div>
-        <aside class="container">
-          {% block sidebar %}
-          {% endblock sidebar %}
-        </aside>
       </main>
+      <!-- Main Content Block end-->
 
-      <!-- Footer -->
+      <!-- Footer start-->
       {% include 'partials/_footer.html' %}
-
+      <!-- Footer end-->
+          
     </div>
+
+    <!-- Page transition hyperscript start-->
+    <script type="text/hyperscript">
+        on load
+            remove .opacity-0 from #content
+        on click
+            if target matches "a[href]"
+                set href to target's @href
+                add .opacity-0 to #content
+                wait 500ms
+                go to href
+    </script>
+    <!-- Page transition hyperscript end-->
+
   </body>
 
 </html>
