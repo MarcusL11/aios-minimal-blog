@@ -25,7 +25,7 @@ CSRF_TRUSTED_ORIGINS = [
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "h1d-resilient-feynman.circumeo-apps.net",
+    "if8-ingenious-tesla.circumeo-apps.net",
     ".grugstack.dev",
     "*",
 ]
