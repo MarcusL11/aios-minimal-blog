@@ -26,26 +26,12 @@
     <div class="mx-auto max-w-2xl lg:max-w-5xl">
 
       <!-- Content Start -->
-      <section class="">
+      <section>
         <div class="lg:order-first lg:row-span-2">
-          <header class="max-w-2xl">
+          <header>
             <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
               <span class="text-accent">The GRUG Stack</span>
             </h1>
-            <p class="mt-6 text-base text-base-content">
-            The GRUG stack is a 
-            <a 
-              href="https://htmx.org/essays/hypermedia-driven-applications/" 
-              class="text-base-content underline hover:text-secondary">hypermedia-driven application
-            </a> 
-            development environment
-            simplifying the creation of web apps for full-stack developers, avoiding the complexities of modern single page application development.
-            </p>
-            
-            <p class="mt-6 text-base text-base-content">
-            Thg GRUG stack incldues:
-            </p>
-            
             <!-- icons of the stack start-->
             <div class="flex sm:flex-row sm:mt-2 gap-4">
               <!-- Django Logo -->
@@ -81,20 +67,36 @@
               </a>
             </div>
             <!-- Icon of the stack end -->
-          </header>
+            <p class="text-base text-base-content">
+            The GRUG stack is a 
+            <a 
+              href="https://htmx.org/essays/hypermedia-driven-applications/" 
+              class="text-base-content underline hover:text-secondary">hypermedia-driven application
+            </a>
+             development environment
+            simplifying the creation of web apps. It provides all the tools you need to build while minimizing JavaScript coding.
+            </p>
+            
+            <p class="mt-4 text-base text-base-content">
+            Wheter this tech stack is better than others or not is a matter of opinon. This tech stack is better than others. 
+            </p>
 
-          <section = mt-10 sm:mt-10 text-base-content>
-            <p class="my-2">Djano is a high-level Python web framework that encourages rapid development and provides a built in Database, Admin, Auth, and more.</p>
-            <p class="my-2">Hyperscript is a virtual DOM library that is designed to be used in conjunction with htmx to make it easier to build dynamic web applications with minimal JavaScript.</p>
-            <p class="my-2">HTMX is a lightweight JavaScript library that allows you to access AJAX, WebSockets and Server Sent Events directly in HTML to build modern web applications with minimal JavaScript.</p>
-            <p class="my-2">TailwindCSS is a CSS framework for rapidly building custom designs. </p>
-          </section>
+            <p class="mt-4 text-base text-base-content">
+            Highights:
+            </p>
+            <ul class="list-disc list-inside text-base text-base-content">
+              <li>Built-in Security, Authentication System, and Admin Console</li>
+              <li>Object-Relational Mapping (ORM) to interact with database</li>
+              <li>Declarative Syntax adding AJAX, CSS Transitions, WebSockets, and Server-Sent Events directly in HTML.</li>
+              <li>Inline scripting and event handling directly in html attributes</li>
+            </ul>
+          </header>
         </div>
       </section>
       <!-- Content end -->
 
       <!-- Latest Posts start-->
-      <section class="mt-10 sm:mt-12 text-base-content">
+      <section class="mt-6 sm:mt-8 text-base-content">
         <h2 class="font-bold tracking-tight text-accent text-2xl sm:text-3xl">Latest Posts</h2>
         {% for post in latest_posts %}
         <article class="mt-4">
