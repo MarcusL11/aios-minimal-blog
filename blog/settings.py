@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import environ
-import dj_database_url
+# import dj_database_url
 
 # Initialise environment variables
 env = environ.Env()
@@ -103,17 +103,17 @@ if DEBUG:
         }
     }
 else:
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.postgresql",
-    #         "NAME": env("POSTGRES_DB"),
-    #         "USER": env("POSTGRES_USER"),
-    #         "PASSWORD": env("POSTGRES_PASSWORD"),
-    #         "HOST": env("POSTGRES_HOST"),
-    #         "PORT": env("POSTGRES_PORT"),
-    #     }
-    # }
-    DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("POSTGRES_DB"),
+            "USER": env("POSTGRES_USER"),
+            "PASSWORD": env("POSTGRES_PASSWORD"),
+            "HOST": env("POSTGRES_HOST"),
+            "PORT": env("POSTGRES_PORT"),
+        }
+    }
+    # DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -275,13 +275,14 @@ AWS_S3_FILE_OVERWRITE = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "/static/"
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "tailwindtheme", "static"),
 ]
+
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # enabling media uploads
-# MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # local media for development
@@ -299,7 +300,7 @@ if not DEBUG:
         "default": {
             "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
         },
-        # CSS and JS file management
+        # Static files management
         "staticfiles": {
             "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
         },
@@ -309,4 +310,5 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+# Custom User models
 AUTH_USER_MODEL = "signin.User"
