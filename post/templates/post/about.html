@@ -32,6 +32,10 @@
             <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
               <span class="text-accent">The GRUG Stack</span>
             </h1>
+            <div>
+              <img src="{% static 'images/grug.png' %}" alt="GRUG Stack" class="mt-4 rounded-lg object-cover max-w-60">
+            </div>
+
             <!-- icons of the stack start-->
             <div class="flex sm:flex-row sm:mt-2 gap-4">
               <!-- Django Logo -->
@@ -78,26 +82,14 @@
             </p>
             
             <p class="mt-4 text-base text-base-content">
-            I'm not here to convince that the GRUG Stack is better than other stacks. Thats a matter of opinion and personal perferences.
-            </p>
-            
-            <p class="mt-4 text-base text-base-content">
-            The GRUG stack does go against today's norm of web development, where frontend frameworks like React, Angular, and Vue are popularly used.
-            It also promotes the use of a library that allows you to access modern browser features directly from HTML rather than using JavaScript.  This reduces the number of lines of code. 
+            It utilizes HTMX and Hyperscript to create an interactice front end.  These two open-source libaries allows you to access modern browser features directly 
+            from HTML to deal with AJAX requests, partial DOM updates, CSS transitions,
+            event handling, Server-Sent Events and WebSockets. The core of this stack is Django, python web framework, which provides a secure and scalable backend with a template engine to render HTML.
+            Ultimately, The GRUG stack aims to create web apps while keeping you in HTML and Django's Python code.
             </p>
 
             <p class="mt-4 text-base text-base-content">
-            Highights:
-            </p>
-            <ul class="list-disc list-inside text-base text-base-content">
-              <li>Built-in Security, Authentication System, and Admin Console</li>
-              <li>Object-Relational Mapping (ORM) to interact with database</li>
-              <li>Declarative Syntax adding AJAX, CSS Transitions, WebSockets, and Server-Sent Events directly in HTML.</li>
-              <li>Inline scripting and event handling directly in html attributes</li>
-            </ul>
-
-            <p class="mt-4 text-base text-base-content">
-            Interested in learning more?  Check out The Grug Stack starter template <a href="" class="linked hover:text-secondary underline">here</a>.
+            Interested in learning more?  Check out The Grug Stack starter template <a href="https://github.com/MarcusL11/the_grug_stack_starter_template" class="linked hover:text-secondary underline" target="_blank">here</a>.
           </header>
           
         </div>
@@ -109,7 +101,7 @@
         <h2 class="font-bold tracking-tight text-accent text-2xl sm:text-3xl">Latest Posts</h2>
         {% for post in latest_posts %}
         <article class="mt-4">
-          <a href="{% url 'post_detail' post.id %}">
+          <a class="no-underline" href="{% url 'post_detail' post.id %}">
             <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-300">
               <p class="text-lg font-bold">{{ post.title }}</p>
               <p class="mt-2 mb-1">{{ post.pub_date }}</p>
