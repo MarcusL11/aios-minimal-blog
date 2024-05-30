@@ -12,7 +12,7 @@
       {% if posts %}
       <ul class="list-none">
         {% for post in posts %}
-        <a href="{% url 'post_detail' post_id=post.id %}" class="hover:text-accent">
+        <a href="{% url 'post_detail' post_id=post.id %}" class="no-underline hover:text-accent">
           <div class="flex text-base-content hover:text-secondary">
             <li class="mb-2 mr-4 hidden sm:block">
               <td>{{ post.pub_date|date:"Y · M · d" }}</td>

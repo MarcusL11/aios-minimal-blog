@@ -51,12 +51,16 @@
     <script type="text/hyperscript">
         on load
             remove .opacity-0 from #content
+        end
+
         on click
             if target matches "a[href]"
                 set href to target's @href
                 add .opacity-0 to #content
-                wait 500ms
+                wait 5s
                 go to href
+            end
+        end
     </script>
     <!-- Page transition hyperscript end-->
 
