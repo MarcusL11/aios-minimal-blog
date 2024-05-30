@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     "post",
     "tag",
     "category",
-    "artgpt",
     "signin",
     "products",
     "mdeditor",
