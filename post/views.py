@@ -73,11 +73,11 @@ def blog_index(request):
 
 
 def about(request):
-    latest_posts = (
+    posts = (
         Post.objects.filter(is_index_post=False)
         .order_by("-pub_date")
         .prefetch_related("category")
-    )[:3]
+    )
 
     try:
         special_post = Post.objects.get(is_index_post=True)
@@ -91,7 +91,7 @@ def about(request):
         "special_post": special_post,
         "logo_asset": logo_asset,
         "copyright_asset": copyright_asset,
-        "latest_posts": latest_posts,
+        "posts": posts,
     }
 
     return render(request, "post/about.html", context)

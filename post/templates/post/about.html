@@ -72,7 +72,7 @@
             The GRUG stack is a 
             <a 
               href="https://htmx.org/essays/hypermedia-driven-applications/" 
-              class="text-base-content underline hover:text-secondary">hypermedia-driven application
+              class="text-base-content underline hover:text-accent">hypermedia-driven application
             </a>
              development environment
             simplifying the creation of web apps. It provides all the tools you need to build without having to rely on a frontend framework.
@@ -84,41 +84,39 @@
             event handling, Server-Sent Events and WebSockets. The core of this stack is Django, python web framework, which provides a secure and scalable backend with a template engine to render HTML.
             Ultimately, The GRUG stack aims to create web apps while keeping you in HTML and Django's Python code.
             </p>
-
-            <p class="mt-4 text-base text-base-content">
-            Interested in learning more?  Check out The Grug Stack starter template <a href="https://github.com/MarcusL11/the_grug_stack_starter_template" class="linked hover:text-secondary underline" target="_blank">here</a>.
           </header>
           
         </div>
       </section>
       <!-- Content end -->
 
-      <!-- Latest Posts start-->
+      <!-- Posts --> 
       <section class="mt-6 sm:mt-8 text-base-content">
-        <h2 class="font-bold tracking-tight text-accent text-2xl sm:text-3xl">Latest Posts</h2>
-        {% for post in latest_posts %}
-        <article class="mt-4">
-          <a class="no-underline" href="{% url 'post_detail' post.id %}">
-            <div class="hover:bg-accent hover:text-base-100 rounded-lg p-2 duration-300">
-              <p class="text-lg font-bold">{{ post.title }}</p>
-              <p class="mt-2 mb-1">{{ post.pub_date }}</p>
-              <p class="text-xs mb-1">Tag: <span class="badge badge-outline">{{ post.tag.name }}</span></p>
-              <div class="flex items-center gap-2">
-                <p class="text-xs">Category: </p> 
-                {% for category in post.category.all %}
-                <p class="badge badge-outline text-xs">{{ category }}</p> 
-                {% endfor %}
-              </div>
-              <div class="mt-2">
-                {{ post.content | markdownify | striptags | truncatechars:200 }}
-              </div>
-              <a class="mt-4 hover:text-primary underline" href="{% url 'post_detail' post.id %}">Read more</a>
+        <header class="my-4">
+          <h2 class="text-2xl sm:text-3xl">Posts</h2>
+        </header>
+        {% if posts %}
+        <ul class="list-none">
+          {% for post in posts %}
+          <a href="{% url 'post_detail' post_id=post.id %}" class="no-underline">
+            <div class="flex text-base-content">
+              <li class="mb-2 mr-4 hidden sm:block">
+                <td>{{ post.pub_date|date:"Y · M · d" }}</td>
+              </li>
+              <li class="mb-2 mr-4 block sm:hidden">
+                <td>{{ post.pub_date|date:"y/m/d" }}</td>
+              </li>
+              <li>
+                <td>{{ post.title }}</td>
+              </li>
             </div>
           </a>
-        </article>
-        {% endfor %}
+          {% endfor %}
+        </ul> 
+        {% else %}
+        <p> no posts yet. </p>
+        {% endif %}
       </section>
-      <!-- Latest Posts end -->
 
     </div>
   </div>

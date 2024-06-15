@@ -260,7 +260,7 @@ MARKDOWNIFY = {
             "http",
             "https",
         ],
-        "BLEACH": True,
+        "BLEACH": False,
     }
 }
 

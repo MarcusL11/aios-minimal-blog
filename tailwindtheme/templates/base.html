@@ -23,12 +23,11 @@
   <body class="h-full" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="relative flex w-full flex-col ">
       <!-- Header start -->
-      {% include 'partials/_header.html'%}
       <!-- Header end -->
 
       <!-- Main Content Block start-->
       <main class="min-h-screen">
-        <div id="content" class="transition-opacity duration-500 ease-in-out opacity-0 container">
+        <div id="content" class="container">
           <div class="flex-auto">
             {% block content %}
             {% endblock content %}
@@ -46,23 +45,6 @@
       <!-- Footer end-->
           
     </div>
-
-    <!-- Page transition hyperscript start-->
-    <script type="text/hyperscript">
-        on load
-            remove .opacity-0 from #content
-        end
-
-        on click
-            if target matches "a[href]"
-                set href to target's @href
-                add .opacity-0 to #content
-                wait 5s
-                go to href
-            end
-        end
-    </script>
-    <!-- Page transition hyperscript end-->
 
   </body>
 
