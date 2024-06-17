@@ -41,9 +41,9 @@
   }
   
   a {
-    font-family: 'Roboto-Light', sans-serif; /* Adding a fallback font-family */
+    font-family: 'Roboto-Medium', sans-serif; /* Adding a fallback font-family */
     font-weight: 300; /* Optional: Ensures the correct weight is applied */
-    @apply underline hover:text-accent;
+    @apply hover:text-accent hover:underline;
   }
   
   h1, h2, h3, h4, h5, h6 {

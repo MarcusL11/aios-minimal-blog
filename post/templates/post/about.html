@@ -29,11 +29,28 @@
       <section>
         <div class="lg:order-first lg:row-span-2">
           <header>
-            <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
-              <span class="text-accent">The GRUG Stack</span>
-            </h1>
+            <div class="mb-4">
+              <h1 class="text-4xl font-bold tracking-tight text-base-content sm:text-5xl">
+                <span class="text-accent">The GRUG Stack</span>
+              </h1> 
+            </div>
 
-            <!-- icons of the stack start-->
+            <p class="text-base text-base-content">
+            The GRUG stack is a 
+            <a href="https://htmx.org/essays/hypermedia-driven-applications/" class="text-base-content">
+              hypermedia-driven
+            </a>
+             development approach simplifying the creation of web apps. It provides all the tools you need to build without having to rely on a heavy frontend framework.
+            </p>
+            
+            <p class="mt-4 text-base text-base-content">
+            GRUG Stack uses HTMX and Hyperscript to create an interactive website by accessing browser features directly 
+            from HTML to deal with AJAX requests, partial DOM updates, CSS transitions,
+            event handling, Server-Sent Events and WebSockets. 
+            </p>
+            <p class="mt-4 text-base text-base-content">
+             Ultimately,the GRUG Stack gives a HTML and Python coding approach in building scalable web applications.
+            </p>
             <div class="flex sm:flex-row sm:mt-2 gap-4">
               <!-- Django Logo -->
               <a href="https://www.djangoproject.com/" target="_blank">
@@ -67,23 +84,6 @@
                 </div>
               </a>
             </div>
-            <!-- Icon of the stack end -->
-            <p class="text-base text-base-content">
-            The GRUG stack is a 
-            <a 
-              href="https://htmx.org/essays/hypermedia-driven-applications/" 
-              class="text-base-content underline hover:text-accent">hypermedia-driven application
-            </a>
-             development environment
-            simplifying the creation of web apps. It provides all the tools you need to build without having to rely on a frontend framework.
-            </p>
-            
-            <p class="mt-4 text-base text-base-content">
-            It utilizes HTMX and Hyperscript to create an interactice front end.  These two open-source libaries allows you to access modern browser features directly 
-            from HTML to deal with AJAX requests, partial DOM updates, CSS transitions,
-            event handling, Server-Sent Events and WebSockets. The core of this stack is Django, python web framework, which provides a secure and scalable backend with a template engine to render HTML.
-            Ultimately, The GRUG stack aims to create web apps while keeping you in HTML and Django's Python code.
-            </p>
           </header>
           
         </div>
@@ -98,7 +98,7 @@
         {% if posts %}
         <ul class="list-none">
           {% for post in posts %}
-          <a href="{% url 'post_detail' post_id=post.id %}" class="no-underline">
+          <a href="{% url 'post_detail' post_id=post.id %}">
             <div class="flex text-base-content">
               <li class="mb-2 mr-4 hidden sm:block">
                 <td>{{ post.pub_date|date:"Y · M · d" }}</td>

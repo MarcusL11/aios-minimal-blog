@@ -12,12 +12,15 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
     <link rel="stylesheet" href="{% static 'css/code-styles.css' %}">
-    <link rel="stylesheet" href="{% static 'css/slide-it.css' %}">
+    <link rel="manifest" href="{% static 'assets/site.webmanifest' %}">
     <script src="https://unpkg.com/hyperscript.org@0.9.12" defer></script> <!-- TODO: Download and host it -->
     <script src="{% static 'js/htmx.min.js' %}" defer></script>
-    <link rel="manifest" href="{% static 'assets/site.webmanifest' %}">
     <title>{% block title %}{% endblock %}</title>
+
     {% tailwind_css %}
+    {% block extra_head %}
+    {% endblock extra_head %}
+
   </head>
 
   <body class="h-full" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
@@ -43,9 +46,10 @@
       <!-- Footer start-->
       {% include 'partials/_footer.html' %}
       <!-- Footer end-->
-          
     </div>
 
+    {% block extra_js %}
+    {% endblock extra_js %}
   </body>
 
 </html>
