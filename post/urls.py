@@ -6,4 +6,5 @@ urlpatterns = [
     path("posts/<int:post_id>/", views.post_detail, name="post_detail"),
     path("", views.about, name="about"),
     path("build-in-public/", views.build_in_public, name="build_in_public"),
+    path("start_here/", views.start_here, name="start_here"),
 ]

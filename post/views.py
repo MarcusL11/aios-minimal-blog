@@ -118,3 +118,15 @@ def build_in_public(request):
     context = {"paired_posts": paired_posts}
 
     return render(request, "post/build_in_public.html", context)
+
+
+def start_here(request):
+    post = Post.objects.get(is_index_post=True)
+    tags = Tag.objects.all()
+
+    context = {
+        "post": post,
+        "tags": tags,
+    }
+
+    return render(request, "post/start_here.html", context=context)
